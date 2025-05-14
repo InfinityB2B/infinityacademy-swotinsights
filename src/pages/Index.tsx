@@ -4,12 +4,14 @@ import WelcomeStep from "@/components/WelcomeStep";
 import FormStep1 from "@/components/FormStep1";
 import FormStepForcas from "@/components/FormStepForcas";
 import FormStepFraquezas from "@/components/FormStepFraquezas";
+import FormStepOportunidades from "@/components/FormStepOportunidades";
 
 const STEPS = [
   { label: "Boas-vindas" },
   { label: "Identificação & Contexto Empresarial" },
   { label: "Forças" },
   { label: "Fraquezas" },
+  { label: "Oportunidades" },
   // futuras etapas...
 ];
 
@@ -19,6 +21,7 @@ const Index = () => {
     identificacao?: any,
     forcas?: any,
     fraquezas?: any,
+    oportunidades?: any,
   }>({});
 
   return (
@@ -53,7 +56,16 @@ const Index = () => {
             defaultValues={formData.fraquezas}
             onComplete={(fraquezas) => {
               setFormData((prev) => ({ ...prev, fraquezas }));
-              // setStep(4); // Futuras etapas
+              setStep(4);
+            }}
+          />
+        )}
+        {step === 4 && (
+          <FormStepOportunidades
+            defaultValues={formData.oportunidades}
+            onComplete={(oportunidades) => {
+              setFormData((prev) => ({ ...prev, oportunidades }));
+              // setStep(5); // Futuras etapas
             }}
           />
         )}
