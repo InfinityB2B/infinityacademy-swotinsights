@@ -6,6 +6,7 @@ import FormStepForcas from "@/components/FormStepForcas";
 import FormStepFraquezas from "@/components/FormStepFraquezas";
 import FormStepOportunidades from "@/components/FormStepOportunidades";
 import FormStepAmeacas from "@/components/FormStepAmeacas";
+import FormStepSaudeFinanceira from "@/components/FormStepSaudeFinanceira";
 
 const STEPS = [
   { label: "Boas-vindas" },
@@ -24,11 +25,12 @@ const Index = () => {
     fraquezas?: any,
     oportunidades?: any,
     ameacas?: any,
+    saudeFinanceira?: any,
   }>({});
 
   return (
     <div className="min-h-screen bg-white text-black font-manrope flex flex-col items-center justify-start">
-      <ProgressBar currentStep={step} stepsCount={STEPS.length + 1} />
+      <ProgressBar currentStep={step} stepsCount={STEPS.length + 2} />
       <main className="w-full max-w-xl p-4 flex-1 flex flex-col items-center justify-center animate-fade-in">
         {step === 0 && (
           <WelcomeStep
@@ -76,7 +78,16 @@ const Index = () => {
             defaultValues={formData.ameacas}
             onComplete={(ameacas) => {
               setFormData((prev) => ({ ...prev, ameacas }));
-              // setStep(6); // Futuras etapas
+              setStep(6);
+            }}
+          />
+        )}
+        {step === 6 && (
+          <FormStepSaudeFinanceira
+            defaultValues={formData.saudeFinanceira}
+            onComplete={(saudeFinanceira) => {
+              setFormData((prev) => ({ ...prev, saudeFinanceira }));
+              // Futuro: setStep(7) para próximas etapas
             }}
           />
         )}
